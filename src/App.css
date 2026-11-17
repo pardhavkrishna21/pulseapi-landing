@@ -118,6 +118,12 @@ body {
 }
 
 /* Mobile */
+@media (max-width: 768px) {
+  .navbar .desktop-cta {
+    display: none !important;
+  }
+}
+
 @media (max-width: 600px) {
   .container {
     padding: 0 18px;

@@ -1,16 +1,31 @@
-# React + Vite
+# PulseAPI - SaaS Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive, interactive SaaS landing page built for the **Sankar Group Front-End Development Internship** assignment. PulseAPI is a conceptual uptime monitoring tool designed for developers, featuring a modern dark-mode aesthetic, interactive UI components, and seamless smooth-scrolling navigation.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+_(Insert your Vercel/Netlify deployment link here)_
 
-## React Compiler
+## 🛠️ Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework:** React (via Vite)
+- **Routing:** React Router DOM
+- **Styling:** Pure CSS (Modular component structure, CSS Variables, Flexbox, Grid)
+- **Icons/Visuals:** CSS and HTML symbols (No heavy external icon libraries)
 
-## Expanding the ESLint configuration
+## ✨ Key Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Dual Navigation System:** Combines standard URL routing (`/pricing`, `/about`) with smooth on-page anchor scrolling.
+- **Interactive Hero Dashboard:** A simulated API endpoint monitor that generates randomized latency pings using React state.
+- **Responsive Layout:** Fluidly adapts from large desktop screens down to mobile devices using CSS Grid and media queries.
+- **Action Modals & Form Validation:** Includes functional pricing toggles and a client-side validated signup/demo form with success state feedback (no backend required).
+
+## ⚙️ Local Setup Instructions
+
+To run this project locally on your machine:
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-github-repo-url>
+   cd pulseapi-landing
+   ```

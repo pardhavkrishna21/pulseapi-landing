@@ -19,56 +19,33 @@ const Navbar = ({ onOpenModal }) => {
 
   return (
     <header className="navbar">
-      <div className="container navbar-container">
-        <Link to="/" className="navbar-logo" onClick={handleLinkClick}>
-          <span className="logo-dot"></span>
-          Pulse<span>API</span>
-        </Link>
+  <div className="navbar-container">
+    <a href="/" className="navbar-logo">
+      <span className="status-dot"></span> Pulse <span>API</span>
+    </a>
 
-        <nav className={`navbar-links ${menuOpen ? 'active' : ''}`}>
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`nav-link ${location.pathname === item.path ? 'current' : ''}`}
-              onClick={handleLinkClick}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <div className="mobile-cta">
-            <button
-              className="btn btn-primary"
-              onClick={() => {
-                setMenuOpen(false)
-                onOpenModal('signup', 'Starter')
-              }}
-            >
-              Sign Up Free
-            </button>
-          </div>
-        </nav>
+    {/* Desktop links */}
+    <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
+      <a href="#features" onClick={() => setMenuOpen(false)}>Features</a>
+      <a href="#how-it-works" onClick={() => setMenuOpen(false)}>How It Works</a>
+      <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a>
+    </nav>
 
-        <div className="navbar-actions">
-          <button
-            className="btn btn-primary desktop-cta"
-            onClick={() => onOpenModal('signup', 'Starter')}
-          >
-            Sign Up Free
-          </button>
-
-          <button
-            className="hamburger-btn"
-            aria-label="Toggle Menu"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span className={`bar ${menuOpen ? 'open' : ''}`}></span>
-            <span className={`bar ${menuOpen ? 'open' : ''}`}></span>
-            <span className={`bar ${menuOpen ? 'open' : ''}`}></span>
-          </button>
-        </div>
-      </div>
-    </header>
+    {/* Right-side action group */}
+    <div className="nav-actions">
+      <button className="btn-signup" onClick={onOpenModal}>
+        Sign Up Free
+      </button>
+      <button
+        className="hamburger-btn"
+        aria-label="Toggle Menu"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+</header>
   )
 }
 

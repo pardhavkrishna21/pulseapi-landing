@@ -1,91 +1,111 @@
-import React, { useState, useEffect } from 'react'
-import './index.css'
+import { useState, useEffect } from 'react';
+import './index.css';
 
 const ActionModal = ({ isOpen, mode, selectedPlan, onClose }) => {
-  const [email, setEmail] = useState('')
-  const [endpointUrl, setEndpointUrl] = useState('')
-  const [error, setError] = useState('')
-  const [done, setDone] = useState(false)
+  const [plan, setPlan] = useState(selectedPlan || 'Starter');
+  const [email, setEmail] = useState('');
+  const [endpointUrl, setEndpointUrl] = useState('');
+  const [error, setError] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
+  // Sync whenever user clicks a different plan card on the page
   useEffect(() => {
-    setEmail('')
-    setEndpointUrl('')
-    setError('')
-    setDone(false)
-  }, [isOpen, selectedPlan])
+    if (selectedPlan) {
+      if (selectedPlan.includes('Enterprise')) setPlan('Enterprise');
+      else if (selectedPlan.includes('Pro')) setPlan('Pro');
+      else setPlan('Starter');
+    }
+    setSubmitted(false);
+    setError('');
+  }, [selectedPlan, isOpen]);
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError('Please enter a valid work email address.')
-      return
+    e.preventDefault();
+    if (!email.trim() || !email.includes('@')) {
+      setError('Please enter a valid work email address.');
+      return;
     }
-    setError('')
-    setDone(true)
-  }
+    setError('');
+    setSubmitted(true);
+  };
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div className="modal-overlay" onClick={onClose}>
       <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Close modal">
+        <button className="modal-close" onClick={onClose} aria-label="Close">
           ✕
         </button>
 
-        {done ? (
-          <div className="success-box">
+        {submitted ? (
+          <div className="modal-success">
             <div className="success-icon">✓</div>
             <h3>Workspace Ready!</h3>
             <p>
-              Your <strong>{selectedPlan}</strong> workspace activation link has been sent to{' '}
-              <strong>{email}</strong>.
+              Selected Plan: <strong>{plan}</strong>
             </p>
-            <button className="btn btn-primary full-width" onClick={onClose}>
-              Back to PulseAPI
+            <p>
+              Confirmation details sent to <strong>{email}</strong>.
+            </p>
+            {endpointUrl && (
+              <p className="endpoint-confirm">
+                Active Monitor: <code>{endpointUrl}</code>
+              </p>
+            )}
+            <button className="btn btn-primary" onClick={onClose}>
+              Done
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} noValidate>
-            <span className="section-badge">{selectedPlan} Plan</span>
-            <h3>
-              {mode === 'demo' ? 'Book Your Enterprise Demo' : 'Create Your Free Account'}
-            </h3>
-            <p className="modal-subtext">
-              Start monitoring your first API endpoint in less than 60 seconds.
-            </p>
+          <form onSubmit={handleSubmit} className="modal-form">
+            <h3>{mode === 'demo' ? 'Request a Live Demo' : 'Create Your PulseAPI Account'}</h3>
 
-            <div className="form-group">
-              <label htmlFor="modal-email">Work Email *</label>
+            <label className="form-label">
+              Select Plan
+              <select
+                className="form-input"
+                value={plan}
+                onChange={(e) => setPlan(e.target.value)}
+              >
+                <option value="Starter">Starter — $0/mo (Free)</option>
+                <option value="Pro">Pro — $29/mo (14-Day Free Trial)</option>
+                <option value="Enterprise">Enterprise — $99/mo (Custom SLA)</option>
+              </select>
+            </label>
+
+            <label className="form-label">
+              Work Email *
               <input
-                id="modal-email"
                 type="email"
+                className="form-input"
                 placeholder="you@company.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {error && <span className="error-text">{error}</span>}
-            </div>
+            </label>
 
-            <div className="form-group">
-              <label htmlFor="modal-url">First Endpoint URL (Optional)</label>
+            <label className="form-label">
+              First Endpoint URL (Optional)
               <input
-                id="modal-url"
                 type="url"
+                className="form-input"
                 placeholder="https://api.yourdomain.com/health"
                 value={endpointUrl}
                 onChange={(e) => setEndpointUrl(e.target.value)}
               />
-            </div>
+            </label>
 
-            <button type="submit" className="btn btn-primary full-width">
-              {mode === 'demo' ? 'Schedule Demo' : 'Launch Workspace'}
+            {error && <p className="form-error">{error}</p>}
+
+            <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
+              {mode === 'demo' ? 'Schedule Demo' : `Launch ${plan} Workspace`}
             </button>
           </form>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ActionModal
+export default ActionModal;

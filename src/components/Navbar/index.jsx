@@ -15,29 +15,59 @@ const Navbar = ({ onOpenModal }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleNavClick = () => {
+  const handleNavClick = (sectionId) => {
     setMenuOpen(false);
+    if (!sectionId) return;
+
+    // Try exact section ID first, with fallback for 'how-it-works' -> 'about'
+    const element =
+      document.getElementById(sectionId) ||
+      (sectionId === 'how-it-works' ? document.getElementById('about') : null);
+
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <header className="navbar">
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo" onClick={handleNavClick}>
+        <Link
+          to="/"
+          className="navbar-logo"
+          onClick={() => handleNavClick('home')}
+        >
           <span className="logo-dot"></span>
           Pulse <span>API</span>
         </Link>
 
         <nav className={`navbar-links ${menuOpen ? 'active' : ''}`}>
-          <a href="#features" className="nav-link" onClick={handleNavClick}>
+          <Link
+            to="/features"
+            className="nav-link"
+            onClick={() => handleNavClick('features')}
+          >
             Features
-          </a>
-          <a href="#how-it-works" className="nav-link" onClick={handleNavClick}>
+          </Link>
+          <Link
+            to="/how-it-works"
+            className="nav-link"
+            onClick={() => handleNavClick('how-it-works')}
+          >
             How It Works
-          </a>
-          <Link to="/pricing" className="nav-link" onClick={handleNavClick}>
+          </Link>
+          <Link
+            to="/pricing"
+            className="nav-link"
+            onClick={() => handleNavClick('pricing')}
+          >
             Pricing
           </Link>
-          <Link to="/about" className="nav-link" onClick={handleNavClick}>
+          <Link
+            to="/about"
+            className="nav-link"
+            onClick={() => handleNavClick('about')}
+          >
             About
           </Link>
 

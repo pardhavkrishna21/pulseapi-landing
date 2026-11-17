@@ -1,0 +1,130 @@
+.billing-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.billing-toggle span.active {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.billing-toggle em {
+  font-style: normal;
+  color: var(--success);
+  font-size: 0.82rem;
+}
+
+.toggle-switch {
+  width: 48px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle-knob {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  transition: transform 0.2s ease;
+}
+
+.toggle-switch.on .toggle-knob {
+  transform: translateX(21px);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.pricing-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 34px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.pricing-card.popular {
+  border-color: var(--accent);
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.16);
+}
+
+.popular-tag {
+  position: absolute;
+  top: -12px;
+  right: 24px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.pricing-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+}
+
+.plan-desc {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin-bottom: 20px;
+}
+
+.plan-price {
+  margin-bottom: 24px;
+}
+
+.plan-price .amount {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.plan-price .period {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.plan-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-grow: 1;
+}
+
+.plan-features li {
+  font-size: 0.93rem;
+  color: var(--text-secondary);
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}

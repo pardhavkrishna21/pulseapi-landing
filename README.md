@@ -82,12 +82,12 @@ pulseapi-landing/
 │
 ├── public/
 │   └── screenshots/
-│       ├── mobile-home.png
-│       ├── mobile-features.png
-│       ├── mobile-contact.png
-│       ├── mobile-navigation.png
-│       ├── desktop-home.png
-│       └── desktop-contact.png
+│       ├── mobile-view-image-1.png
+│       ├── mobile-view-image-2.png
+│       ├── mobile-view-image-3.png
+│       ├── desktop-view-image-1.png
+│       ├── desktop-view-image-2.png
+│
 │
 ├── src/
 │   ├── components/
